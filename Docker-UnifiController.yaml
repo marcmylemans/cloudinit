@@ -8,6 +8,7 @@ packages:
   - gnupg-agent
   - software-properties-common
 runcmd:
+  - curl -sSL https://repos.insights.digitalocean.com/install.sh | sudo bash
   - curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
   - add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
   - apt-get update -y
@@ -16,5 +17,6 @@ runcmd:
   - systemctl enable docker
   - mkdir /usr/docker
   - mkdir /var/docker
-  - docker run -d -it --name unifi --restart unless-stopped -e "VIRTUAL_HOST=unifi.mylemans.online" -e "VIRTUAL_PORT=8443" -e "VIRTUAL_PROTO=https" -e "LETSENCRYPT_HOST=unifi.mylemans.online" -e "LETSENCRYPT_EMAIL=marc@mylemans.online" -e MEM_LIMIT=1024M -v /var/docker/unifi:/config -p 3478:3478/udp -p 8080:8080 ghcr.io/linuxserver/unifi-controller
+  - docker run -d -it --name unifi --restart unless-stopped -e "VIRTUAL_HOST=unifi2.mylemans.online" -e "VIRTUAL_PORT=8443" -e "VIRTUAL_PROTO=https" -e "LETSENCRYPT_HOST=unifi2.mylemans.online" -e "LETSENCRYPT_EMAIL=marc@mylemans.online" -e MEM_LIMIT=1024M -v /var/docker/unifi:/config -p 3478:3478/udp -p 8080:8080 ghcr.io/linuxserver/unifi-controller
   - docker run -d -it --name nginx-letsencrypt --restart unless-stopped --volumes-from nginx-proxy -v /var/docker/nginx-proxy/certs:/etc/nginx/certs:rw -v /var/run/docker.sock:/var/run/docker.sock:ro nginxproxy/acme-companion
+
