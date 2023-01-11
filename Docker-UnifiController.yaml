@@ -1,20 +1,29 @@
 #cloud-config
 package_update: true
 package_upgrade: true
+
+groups:
+  - docker
+
+system_info:
+  default_user:
+    groups: [ docker ]
+
 packages:
   - apt-transport-https
   - ca-certificates
   - curl
   - gnupg-agent
   - software-properties-common
+
 runcmd:
   - curl -sSL https://repos.insights.digitalocean.com/install.sh | sudo bash
   - curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
   - add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
   - apt-get update -y
   - apt-get install -y docker-ce docker-ce-cli containerd.io
-  - systemctl start docker
   - systemctl enable docker
+  - systemctl start docker
   - mkdir /usr/docker
   - mkdir /var/docker
   - docker run -d -it --name unifi --restart unless-stopped -e "VIRTUAL_HOST=unifi2.mylemans.online" -e "VIRTUAL_PORT=8443" -e "VIRTUAL_PROTO=https" -e "LETSENCRYPT_HOST=unifi2.mylemans.online" -e "LETSENCRYPT_EMAIL=marc@mylemans.online" -e MEM_LIMIT=1024M -v /var/docker/unifi:/config -p 3478:3478/udp -p 8080:8080 ghcr.io/linuxserver/unifi-controller
