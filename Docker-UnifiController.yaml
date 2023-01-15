@@ -3,14 +3,6 @@ package_update: true
 package_upgrade: true
 package_reboot_if_required: true
 
-users:
-  - name: marc
-    ssh-authorized-keys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDlypWhQ+5gaJ6w2UopWlBNwRkq3rU6iZDD2kyGZBFfiFMtHn8dzxEgiLmmRdQl+EOmQUGPYxNL9aeYJEoOHogMq2j1rVdJY7N0DSIVMZZx5q0pS9BYfKCGDFncdv+CUISGSzBAsFkcobWnoTHTILPLnb6kgrJ5ZAcd9s0CjpuZ19DCa5AgKN2K1sT6TjID5keC+015GAce715GsSAVAdon7Yl4PjApifw+6VgI+vBmT6FbDuXMYqbR/R/HRwm72C8Oqjuiv+HmBNy0Gp6PW2DCsK0cVatfhmornW9bL3vVV5gIlDPqpr1B88rpzc3V/tHtRp1iy4xXS2QggN5G7dOyFT7Od3/WTwTLjidRgKqfUYK1hpYe3hCDcGFB5Zn6M+7LjnL6MjBMcAB7UMDveGjay1caLwMbZ3Fz+VWtQeIo9xkuLsqIl92OzvFmhFtkz5E4ngP6hGdiVwyOixCjkr2b1qgbg/6O/Mn6iTmWiofVMDkmL21D2bn6vQz9DrmbqIvmspK6ZABucZkcihIIcZhSISZ6SKV5ScBg71B2KQ2+O+1TQZ/gn3bCTqzZd5Apv8HIYuLkJr36tH2oIBunUO5WkM5STL7rSoOqtnLRx982iaeUwGF8Tt/4a6iyoXCWORXiWdfdyqbvblOcKsYlSpWyjSOeM7IBGTc6zQnSR+DNJQ== marc@WS-MARC
-    sudo: ['ALL=(ALL) NOPASSWD:ALL']
-    groups: sudo
-    shell: /bin/bash
-
 groups:
   - docker
 
@@ -25,38 +17,6 @@ packages:
   - gnupg-agent
   - software-properties-common
 
-# add security to ssh config
-write_files:
-  - path: /etc/ssh/sshd_config
-    content: |
-         Port 22
-         Protocol 2
-         HostKey /etc/ssh/ssh_host_dsa_key
-         HostKey /etc/ssh/ssh_host_ecdsa_key
-         HostKey /etc/ssh/ssh_host_ed25519_key
-         UsePrivilegeSeparation yes
-         KeyRegenerationInterval 3600
-         ServerKeyBits 1024
-         SyslogFacility AUTH
-         LogLevel INFO
-         LoginGraceTime 120
-         PermitRootLogin no
-         StrictModes yes
-         RSAAuthentication yes
-         PubkeyAuthentication yes
-         IgnoreRhosts yes
-         RhostsRSAAuthentication no
-         HostbasedAuthentication no
-         PermitEmptyPasswords no
-         ChallengeResponseAuthentication no
-         X11Forwarding no
-         X11DisplayOffset 10
-         PrintMotd no
-         PrintLastLog yes
-         TCPKeepAlive yes
-         AcceptEnv LANG LC_*
-         UsePAM yes
-         AllowUsers kuba
 
 runcmd:
   - mkdir -p /etc/apt/keyrings
