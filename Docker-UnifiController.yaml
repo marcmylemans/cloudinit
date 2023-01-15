@@ -6,7 +6,7 @@ package_reboot_if_required: true
 users:
   - name: marc
     ssh-authorized-keys:
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPZezWV8Wct9B/jtIegSHl5TeLEZplOaBg9QZVg1IcZm marc@LAPTOP-MARC
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDlypWhQ+5gaJ6w2UopWlBNwRkq3rU6iZDD2kyGZBFfiFMtHn8dzxEgiLmmRdQl+EOmQUGPYxNL9aeYJEoOHogMq2j1rVdJY7N0DSIVMZZx5q0pS9BYfKCGDFncdv+CUISGSzBAsFkcobWnoTHTILPLnb6kgrJ5ZAcd9s0CjpuZ19DCa5AgKN2K1sT6TjID5keC+015GAce715GsSAVAdon7Yl4PjApifw+6VgI+vBmT6FbDuXMYqbR/R/HRwm72C8Oqjuiv+HmBNy0Gp6PW2DCsK0cVatfhmornW9bL3vVV5gIlDPqpr1B88rpzc3V/tHtRp1iy4xXS2QggN5G7dOyFT7Od3/WTwTLjidRgKqfUYK1hpYe3hCDcGFB5Zn6M+7LjnL6MjBMcAB7UMDveGjay1caLwMbZ3Fz+VWtQeIo9xkuLsqIl92OzvFmhFtkz5E4ngP6hGdiVwyOixCjkr2b1qgbg/6O/Mn6iTmWiofVMDkmL21D2bn6vQz9DrmbqIvmspK6ZABucZkcihIIcZhSISZ6SKV5ScBg71B2KQ2+O+1TQZ/gn3bCTqzZd5Apv8HIYuLkJr36tH2oIBunUO5WkM5STL7rSoOqtnLRx982iaeUwGF8Tt/4a6iyoXCWORXiWdfdyqbvblOcKsYlSpWyjSOeM7IBGTc6zQnSR+DNJQ== marc@WS-MARC
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
     groups: sudo
     shell: /bin/bash
